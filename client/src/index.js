@@ -54,7 +54,7 @@ fetch('api/test').then(res => res.json()).then(res => {
         (res.data).forEach(elem => {
             let post = new Post({item : elem});
             document.body.append(post.create())
-        
+         
         });
     };
 });
