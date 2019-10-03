@@ -1,9 +1,13 @@
 import './libs';
 import Changer from './components/Changer';
 
-const newChanger = new Changer();
+// Element.prototype.toggleNone = function() {
+//     this.style.display = (this.style.display === 'none') ? 'flex' : 'none'; 
+// }
 
 const btn = document.querySelector('.btn');
 const nav = document.querySelector('.mobile-nav');
 
-newChanger.addeEvents(btn, nav);
+Changer.addeEvents(btn, nav);
+
+// btn.addEventListener('click', e => nav.toggleNone());
