@@ -16,3 +16,9 @@ export default class Changer {
 
 
 }
+
+
+
+Element.prototype.toggleClass = function(){
+    this.style.display = (this.style.display === 'none') ? 'flex' : 'none'; 
+}
