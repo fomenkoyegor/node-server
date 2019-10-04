@@ -58,34 +58,86 @@ import './index.scss';
 //         });
 //     };
 // });
-class Auth {
+class AuthService {
     constructor() {
-        this.url = 'auth/api/';
+        this.url = 'api/auth/';
     }
 
-    async login(user = {}) {
-        try {
-            const res = await fetch(this.url + 'login', {
-                method: 'POST',
-                body: JSON.stringify(user)
-            });
-            return res.json();
-        } catch (e) {
-            throw new Error(e);
-        }
+    login(user = {}) {
+        return fetch(this.url + 'login', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        }).then(res => res.json());
     }
 }
 
-const authServie = new Auth();
+class PostsService {
+    constructor() {
+        this.url = 'api/posts';
+    }
+
+    get() {
+        return fetch(this.url).then(res => res.json()).then(res => res.data);
+    }
+}
+
+const authServie = new AuthService();
+const postsService = new PostsService();
+
+
+const getToken = _ => localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token'))['token'] : {};
+const setToken = (token) => localStorage.setItem('token', JSON.stringify(token));
+const token = getToken();
+const getUser = _ => getToken().length ? JSON.parse(localStorage.getItem('token'))['user'] : null;
+
 
 
 const loginForm = document.querySelector('#login');
+const postsDiv = document.querySelector('.posts');
 
 loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const email = this.elements.email.value;
     const password = this.elements.password.value;
-    authServie.login({email, password}).then(res => {
-        console.log(res);
+    const user = {email, password};
+    console.log(user);
+    authServie.login(user).then(res => {
+        setToken(res);
     });
 });
+
+
+const renderButtonDel = (id,user) => {
+    return getUser() && getUser()._id===user?'<button data-id="${id}">del</button>':'';
+};
+
+const renderPosts = ({_id, title, body, user, date}) => {
+    const post = `
+    <div style="border: 1px solid;">
+        <h2>${title}</h2>    
+        <p>${body}</p>
+        <p>${date}</p>
+        <div class="buttons">
+            ${renderButtonDel(_id,user)}
+        </div>
+    </div>`;
+    postsDiv.innerHTML += post;
+};
+
+const getPosts = _ => {
+    postsService.get().then(posts => {
+        if (posts.length) {
+            postsDiv.innerHTML = '';
+            posts.map(renderPosts);
+        }
+    });
+};
+
+
+getPosts();
+
+

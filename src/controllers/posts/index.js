@@ -18,7 +18,7 @@ const get = async (req, res) => {
 
             query.date['$lte'] = req.query.end
         }
-        const posts = await Post
+        let posts = await Post
             .find(query)
             .sort({date: -1})
             .skip(+req.query.offset)
