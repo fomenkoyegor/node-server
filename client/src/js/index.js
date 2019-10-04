@@ -5,9 +5,11 @@ import Changer from './components/Changer';
 //     this.style.display = (this.style.display === 'none') ? 'flex' : 'none'; 
 // }
 
-const btn = document.querySelector('.btn');
-const nav = document.querySelector('.mobile-nav');
+const loginbtn = document.querySelector('.auth__btn-login');
+const loginsection = document.querySelector('.login-section');
+const closebtn = document.querySelector('.login-section__cancel-btn');
 
-Changer.addeEvents(btn, nav);
+Changer.toogle(loginbtn, loginsection);
+Changer.close(closebtn, loginsection);
 
 // btn.addEventListener('click', e => nav.toggleNone());

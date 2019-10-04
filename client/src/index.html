@@ -11,25 +11,46 @@
 
 <body>
 	<header>
-		<nav>
-			<ul>
-				<li><a href="">Home</a></li>
-				<li><a href="">Bio</a></li>
-				<li><a href="">Works</a></li>
-				<li><a href="">Contacts</a></li>
-				<li><a class="btn">btn</a></li>
+		<div class="container">
+			<nav class="nav">
+				<ul class="nav__list">
+					<li class="nav__item"><a class="nav__link" href="">Home</a></li>
+					<li class="nav__item"><a class="nav__link" href="">Bio</a></li>
+					<li class="nav__item"><a class="nav__link" href="">Works</a></li>
+					<li class="nav__item"><a class="nav__link" href="">Contacts</a></li>
+				</ul>
+			</nav>
+			<ul class="auth__list">
+				<li class="auth__item"><a class="btn auth__btn-login">login</a></li>
+				<li class="auth__item"><a class="btn auth__btn-registration">registration</a></li>
 			</ul>
-		</nav>
-		<nav class="mobile-nav">
-			<ul>
-				<li><a href="">Home</a></li>
-				<li><a href="">Bio</a></li>
-				<li><a href="">Works</a></li>
-				<li><a href="">Contacts</a></li>
-				<li><a class="btn">btn</a></li>
-			</ul>
-		</nav>
+		</div>
 	</header>
+
+	<section class="login-section" style="display: none">
+		<form class="login-section__form" action="/action_page.php" method="post">
+			<div class="login-section__main-container">
+				<label for="uname"><b>Username</b></label>
+				<input class="login-section__input" type="text" placeholder="Enter Username" name="uname" required>
+
+				<label for="psw"><b>Password</b></label>
+				<input class="login-section__input" type="password" placeholder="Enter Password" name="psw" required>
+
+				<button class="login-section__submit-btn btn" type="submit">login</button>
+				<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me
+				</label>
+			</div>
+			<div class="login-section__bottom-container" style="background-color:#f1f1f1">
+				<button type="button" class="btn login-section__cancel-btn">Cancel</button>
+				<span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</section>
+
+	<section class="registration-section">
+
+	</section>
 
 </body>
 
