@@ -19,4 +19,4 @@ router.get('/:id', function (req, res) {
     res.status(201).send(item)
 });
 
-export default router;
+export {router}

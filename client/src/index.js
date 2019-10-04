@@ -49,6 +49,7 @@ import './index.scss';
 
 // // new Post ({item: obj});
 
+<<<<<<< HEAD
 // fetch('api/test').then(res => res.json()).then(res => {
 //     if (res) {
 //         (res.data).forEach(elem => {
@@ -58,3 +59,14 @@ import './index.scss';
 //         });
 //     };
 // });
+=======
+fetch('api/test').then(res => res.json()).then(res => {
+    if (res) {
+        (res.data).forEach(elem => {
+            let post = new Post({item : elem});
+            document.body.append(post.create())
+         
+        });
+    };
+});
+>>>>>>> 5e9c0ea52f9b0284f19080a14cc6b91f536d038c
