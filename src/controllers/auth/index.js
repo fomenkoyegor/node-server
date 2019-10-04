@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwr = require('jsonwebtoken');
 const key = 'jwt-token';
-import {User} from "../../models/User";
+import {User} from "../../models";
 
 const errHendler = require('../../untils/errHendler');
 
