@@ -12,14 +12,14 @@ import './index.scss';
 //     }
 
 //     eventsAttach(){
-       
+
 //     }
 
 //     getInfo(){
 //         const info =  {
 //             'id': this.id,
 //             name: this.name,
-            
+
 //         };
 //         console.log(info)
 //     }
@@ -54,7 +54,38 @@ import './index.scss';
 //         (res.data).forEach(elem => {
 //             let post = new Post({item : elem});
 //             document.body.append(post.create())
-        
+
 //         });
 //     };
 // });
+class Auth {
+    constructor() {
+        this.url = 'auth/api/';
+    }
+
+    async login(user = {}) {
+        try {
+            const res = await fetch(this.url + 'login', {
+                method: 'POST',
+                body: JSON.stringify(user)
+            });
+            return res.json();
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+}
+
+const authServie = new Auth();
+
+
+const loginForm = document.querySelector('#login');
+
+loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = this.elements.email.value;
+    const password = this.elements.password.value;
+    authServie.login({email, password}).then(res => {
+        console.log(res);
+    });
+});
