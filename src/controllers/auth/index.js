@@ -46,7 +46,7 @@ const register = async (req, res) => {
                 if (err) {
                     res.status(409).send({status: "fail", err});
                 } else {
-                    res.status(201).send({user});
+                    login(req,res)
                 }
             })
         } catch (err) {
