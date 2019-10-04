@@ -1,9 +1,12 @@
-import express from 'express';
-var router = express.Router();
+import {router as authRoute} from "./auth";
+import {router as homeRoute} from "./home";
+import {router as postsRoute} from "./posts";
+import {router as testRoute} from "./test";
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
-export default router;
+export {
+    authRoute,
+    homeRoute,
+    postsRoute,
+    testRoute
+}

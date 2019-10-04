@@ -3,6 +3,7 @@ bin
 # build folder 
 build
 dist
+.idea
 
 # exclude src
 !src/**

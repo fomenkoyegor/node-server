@@ -1,7 +1,7 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const mongoose = require('mongoose');
-const User = require('../models/User');
+import mongoose from 'mongoose';
+import {User} from "../models/User";
 const key = 'jwt-token';
 
 const options = {
@@ -9,7 +9,7 @@ const options = {
     secretOrKey: key
 };
 
-module.exports = passport => { 
+module.exports = passport => {
     passport.use(
         new JwtStrategy(options, async (payload, done) => {
             try {

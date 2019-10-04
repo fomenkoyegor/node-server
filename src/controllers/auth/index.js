@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwr = require('jsonwebtoken');
 const key = 'jwt-token';
-const User = require('../models/User');
-const errHendler = require('../untils/errHendler');
+import {User} from "../../models/User";
 
-module.exports.login = async (req, res) => {
+const errHendler = require('../../untils/errHendler');
+
+const login = async (req, res) => {
     const {email, password} = req.body;
     const candidate = await User.findOne({email});
     if (candidate) {
@@ -27,7 +28,7 @@ module.exports.login = async (req, res) => {
 
 };
 
-module.exports.register = async (req, res) => {
+const register = async (req, res) => {
     const {email, password} = req.body;
     const candidate = await User.findOne({email});
     if (candidate) {
@@ -59,4 +60,9 @@ module.exports.register = async (req, res) => {
 
 };
 
-module.exports.users = async (req, res) => res.send({users: await User.find()});
+const users = async (req, res) => res.send({users: await User.find()});
+
+
+const auth = {users, login, register};
+
+export {auth}
